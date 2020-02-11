@@ -1,4 +1,4 @@
-export function buildDailySteps(steps) {
+export function buildDailySteps(steps, manual = false) {
   const results = {}
   for (const step of steps) {
     if (step == undefined) {
@@ -11,7 +11,8 @@ export function buildDailySteps(steps) {
       results[dateFormatted] = 0
     }
 
-    results[dateFormatted] += step.steps
+
+    results[dateFormatted] += manual ? step.manual_steps : step.steps
   }
 
   const dateMap = []

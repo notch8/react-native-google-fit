@@ -22,9 +22,11 @@ class RNGoogleFit {
   authorize = async (options = {}) => {
     const successResponse = { success: true }
     try {
+      if (options.force != true) {
       await this.checkIsAuthorized()
       if (this.isAuthorized) {
         return successResponse
+        }
       }
       const authResult = await new Promise((resolve, reject) => {
         this.onAuthorize(() => {
@@ -117,6 +119,7 @@ class RNGoogleFit {
                 dev.source.appPackage +
                 (dev.source.stream ? ':' + dev.source.stream : '')
               obj.steps = buildDailySteps(dev.steps)
+            obj.manual_steps = buildDailySteps(dev.steps, true)
               return obj
             }, this)
           )
