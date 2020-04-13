@@ -83,20 +83,20 @@ public class HydrationHistory {
     for (int index = 0 ; index < hydrationArray.size() ; index++) {
       ReadableMap hydrationSample = hydrationArray.getMap(index);
       if (hydrationSample != null) {
-        dataPoints.add(DataPoint.builder(hydrationSource)
-          .setTimestamp((long) hydrationSample.getDouble("date"), TimeUnit.MILLISECONDS)
-          .setField(Field.FIELD_VOLUME, (float) hydrationSample.getDouble("waterConsumed"))
-          .build());
+        // dataPoints.add(DataPoint.builder(hydrationSource)
+        //   .setTimestamp((long) hydrationSample.getDouble("date"), TimeUnit.MILLISECONDS)
+        //   .setField(Field.FIELD_VOLUME, (float) hydrationSample.getDouble("waterConsumed"))
+        //   .build());
       }
       if (dataPoints.size() % MAX_DATAPOINTS_PER_SINGLE_REQUEST == 0) {
         // Be sure to limit each individual request to 1000 datapoints. Exceeding this limit could result in an error.
         // https://developers.google.com/fit/android/history#insert_data
-        dataSets.add(DataSet.builder(hydrationSource).addAll(dataPoints).build());
+        // dataSets.add(DataSet.builder(hydrationSource).addAll(dataPoints).build());
         dataPoints.clear();
       }
     }
     if (dataPoints.size() > 0) {
-      dataSets.add(DataSet.builder(hydrationSource).addAll(dataPoints).build());
+      // dataSets.add(DataSet.builder(hydrationSource).addAll(dataPoints).build());
     }
     new SaveDataHelper(dataSets, googleFitManager).execute();
 
