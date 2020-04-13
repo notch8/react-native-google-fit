@@ -15,7 +15,7 @@ import com.reactnative.googlefit.GoogleFitManager;
 
 import com.facebook.react.bridge.ReactContext;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import com.google.android.gms.fitness.Fitness;
