@@ -33,7 +33,7 @@ import com.google.android.gms.fitness.result.ListSubscriptionsResult;
 import com.google.android.gms.fitness.data.Subscription;
 
 import com.facebook.react.modules.core.DeviceEventManagerModule;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
