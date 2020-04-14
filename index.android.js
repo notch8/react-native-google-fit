@@ -204,7 +204,32 @@ class RNGoogleFit {
     )
   }
 
-  getActivitySamples(options, callback) {
+  getActivitySamples = (options, callback) => {
+    const startDate = !isNil(options.startDate)
+                    ? Date.parse(options.startDate)
+                    : new Date().setHours(0, 0, 0, 0)
+    const endDate = !isNil(options.endDate)
+                  ? Date.parse(options.endDate)
+                  : new Date().valueOf()
+    if (!callback || typeof callback !== 'function') {
+      return new Promise((resolve, reject) => {
+        googleFit.getActivitySamples(
+          startDate,
+          endDate,
+          error => {
+            reject(error)
+          },
+          res => {
+            if (res.length > 0) {
+              resolve(res)
+            } else {
+              reject('There is no any distance data for this period')
+            }
+          }
+        )
+
+      })
+    }
     googleFit.getActivitySamples(
       options.startDate,
       options.endDate,
